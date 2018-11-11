@@ -12,16 +12,5 @@ module ::Mongoid
     end
     ))
     end
-
-=begin
-    def self.included(base)
-      base.class_eval(%Q(
-          before_destroy :remove_logo
-          before_destroy :remove_avatar
-          before_destroy :remove_attach
-      ))
-    end
-=end
-
   end
 end

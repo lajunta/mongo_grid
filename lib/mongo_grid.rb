@@ -37,7 +37,6 @@ module ::MongoGrid
   def uploadtogrid(upload,opts={})
     filename=upload.original_filename
     content_type=upload.content_type
-    if content_type.include?("image")
 		if /jpg|jpeg|png/ =~ content_type
       ::Zbox::Qm.resize(upload.tempfile.path,opts)
     end
