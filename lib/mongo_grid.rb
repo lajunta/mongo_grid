@@ -1,4 +1,3 @@
-require 'zbox'
 require 'mongo_grid/version'
 
 #Dir[File.join(File.dirname(__FILE__), 'mongo_grid', '*.rb')].each do |extension|
@@ -37,8 +36,13 @@ module ::MongoGrid
   def uploadtogrid(upload,opts={})
     filename=upload.original_filename
     content_type=upload.content_type
-		if /jpg|jpeg|png/ =~ content_type
-      ::Zbox::Qm.resize(upload.tempfile.path,opts)
+    if /jpg|jpeg|png/ =~ content_type
+      if opts[:width]
+        %x[resize -fixed -w #{opts[:width]} #{upload.tempfile.path}]
+      else
+        %x[resize -fixed #{upload.tempfile.path}]
+      end
+
     end
     data = File.open(upload.tempfile.path)
     length=File.size(upload.tempfile.path)
