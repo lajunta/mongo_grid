@@ -1,4 +1,4 @@
-require 'mongo_grid/version'
+require 'version'
 
 #Dir[File.join(File.dirname(__FILE__), 'mongo_grid', '*.rb')].each do |extension|
 #  require extension
@@ -65,6 +65,6 @@ module ::MongoGrid
   end 
 end
 
-
-require 'mongo_grid/mongoid'
-require 'mongo_grid/action_base'
+require 'mongoid'
+require 'action_base'
+require 'plug'

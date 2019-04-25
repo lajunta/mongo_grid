@@ -47,15 +47,15 @@ resize -help
 
 ### Mongoid extensions
 
-This gem also add four dynamic method in mongoid module.
+This gem also add some dynamic methods in mongoid module.
 ```
-- remove_logo
-- remove_avatar 
-- remove_attach 
-- remove_embed
+- remove_XXX
+- delete_medias(content)
 ```
 
-These methods can be used in module callback when you want to delete a document in mongodb 
+remove_XXX method can be used in module callback when you want to delete a document in mongodb 
+
+delete_medias(content) used to delete medias within content like article body
 
 ### Action Base extensions
 
