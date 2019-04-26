@@ -1,8 +1,8 @@
 require 'version'
 
-#Dir[File.join(File.dirname(__FILE__), 'mongo_grid', '*.rb')].each do |extension|
-#  require extension
-#end
+Dir[File.join(File.dirname(__FILE__), 'ext', '*.rb')].each do |extension|
+  require extension
+end
 
 module ::MongoGrid
   attr_accessor :db_name, :db_url
@@ -65,6 +65,3 @@ module ::MongoGrid
   end 
 end
 
-require 'mongoid'
-require 'action_base'
-require 'plug'
