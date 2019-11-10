@@ -36,14 +36,13 @@ module ::MongoGrid
   def uploadtogrid(upload,opts={})
     filename=upload.original_filename
     content_type=upload.content_type
-    if /jpg|jpeg|png/ =~ content_type
-      if opts[:width]
-        %x[resize -fixed -w #{opts[:width]} #{upload.tempfile.path}]
-      else
-        %x[resize -fixed #{upload.tempfile.path}]
-      end
-
-    end
+    #if /jpg|jpeg|png/ =~ content_type
+    #  if opts[:width]
+    #    %x[resize -fixed -w #{opts[:width]} #{upload.tempfile.path}]
+    #  else
+    #    %x[resize -fixed #{upload.tempfile.path}]
+    #  end
+    #end
     data = File.open(upload.tempfile.path)
     length=File.size(upload.tempfile.path)
     gfile = ::Mongo::Grid::File.new(data,filename: filename, metadata: {content_type: content_type,length: length})
