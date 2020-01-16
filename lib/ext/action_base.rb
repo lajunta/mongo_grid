@@ -10,22 +10,21 @@ ActionController::Base.class_eval do
         redirect_to login_path and return
       end
       end
-      ))
+           ))
     end
   end
 
   def attachit(model,attach = :attach,opts = {})
-    unless params[model.to_sym][attach].blank?
-      if params[:action] == 'update'
-        old_attach = eval("@#{model}.#{attach.to_s}")
-        unless old_attach.blank?
-          id = BSON::ObjectId.from_string(old_attach['grid_id'])
-          MongoGrid.grid.delete(id)
-        end
+    attachs=params[attach.to_sym]
+    attachs_ary=[]
+    unless attachs.blank?
+      attachs.each {|att| attachs_ary << ::MongoGrid.uploadtogrid(att)}
+      if params[:action] == "update"
+        old_attachs = evel("@#{model}.#{attach.to_s}")
+        attachs_ary=attachs_ary+old_attachs unless old_attachs.blank?
       end
-      attach=params[model.to_sym][attach]
-      MongoGrid.uploadtogrid(attach,opts)
     end
+    return attachs_ary
   end
 
   def pageit
